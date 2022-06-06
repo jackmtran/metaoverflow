@@ -5,9 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     question: DataTypes.STRING,
     voteCount: DataTypes.INTEGER,
     categoryId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {});
   Question.associate = function(models) {
-    Question.belongsTo(models.Category, {foreignKey: 'questionId'})
+    Question.belongsTo(models.Category, {foreignKey: 'categoryId'})
     Question.belongsTo(models.User, {foreignKey: 'userId'})
     Question.hasMany(models.Answer, {foreignKey: 'questionId'})
   };
