@@ -12,11 +12,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      questionId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {model: 'Questions'}
-      },
       totalVotes: {
         allowNull: false,
         type: Sequelize.INTEGER
