@@ -61,14 +61,14 @@ const userValidators = [
 router.post('/user/register', csrfProtection, userValidators,
   asyncHandler(async (req, res) => {
     const {
-      emailAddress,
       username,
+      email,
       hashedPassword,
     } = req.body;
 
     const user = db.User.build({
       username,
-      emailAddress,
+      email,
       hashedPassword,
     });
 
@@ -86,7 +86,7 @@ router.post('/user/register', csrfProtection, userValidators,
         user,
         errors,
         csrfToken: req.csrfToken(),
-      });
+      })
     }
   }));
 
