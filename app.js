@@ -8,6 +8,8 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const { csrfProtection, asyncHandler } = require('./routes/utils');
+const csrf = require('csurf');
 
 const app = express();
 
@@ -19,7 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(usersRouter);
+app.use(indexRouter);
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
@@ -33,7 +36,7 @@ app.use(
 );
 
 // create Session table if it doesn't already exist
-store.sync();
+// store.sync();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
