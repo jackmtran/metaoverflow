@@ -3,48 +3,48 @@ const session = require('express-session');
 
 
 const loginUser = (req, res, user) => {
-	req.session.authenticated = {
-		userId: user.id,
-	};
+    req.session.auth = {
+        userId: user.id,
+    };
 };
 
 const restoreUser = async (req, res, next) => {
 
-	if (session.auth) {
-		const { userId } = req.session.authenticated;
+    if (req.session.auth) {
+        const { userId } = req.session.authenticated;
 
-		try {
-			const user = await db.User.findByPk(userId);
+        try {
+            const user = await db.User.findByPk(userId);
 
-			if (user) {
-				res.locals.authenticated = true;
-				res.locals.user = user;
-				next();
-			}
-		} catch (err) {
-			res.locals.authenticated = false;
-			next(err);
-		}
-	} else {
-		res.locals.authenticated = false;
-		next();
-	}
+            if (user) {
+                res.locals.authenticated = true;
+                res.locals.user = user;
+                next();
+            }
+        } catch (err) {
+            res.locals.authenticated = false;
+            next(err);
+        }
+    } else {
+        res.locals.authenticated = false;
+        next();
+    }
 };
 
 const logoutUser = (req, res) => {
-	delete req.session.authenticated;
+    delete req.session.auth;
 };
 
 const requireAuth = (req, res, next) => {
-	if (!res.locals.authenticated) {
-		return res.redirect('/login');
-	}
-	return next();
+    if (!res.locals.authenticated) {
+        return res.redirect('/login');
+    }
+    return next();
 };
 
 module.exports = {
-	loginUser,
-	restoreUser,
-	logoutUser,
-	requireAuth,
+    loginUser,
+    restoreUser,
+    logoutUser,
+    requireAuth,
 };
