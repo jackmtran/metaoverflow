@@ -6,7 +6,7 @@ block content
   +validationErrorSummary(errors)
   form(action='/users/register' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Username', 'Username', user.username)
+    +field('Username', 'username', user.username)
     +field('Email Address', 'email', user.email)
     +field('Password', 'password', user.hashedPassword, 'password')
     +field('Confirm Password', 'confirmPassword', '', 'password')
