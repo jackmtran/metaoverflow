@@ -18,12 +18,12 @@ router.get('/register', csrfProtection, (req, res) => {
 const userValidators = [
   check('username')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for username')
+    .withMessage('Please provide a username')
     .isLength({ max: 50 })
     .withMessage('Username must not be more than 50 characters long'),
-    check('email')
+  check('email')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address')
+    .withMessage('Please provide a valid for email')
     .isLength({ max: 255 })
     .withMessage('Email Address must not be more than 255 characters long')
     .isEmail()
@@ -98,10 +98,10 @@ router.post('/register', csrfProtection, userValidators,
   const loginValidators = [
     check('email')
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a value for Email Address'),
+      .withMessage('Please provide a valid for Email Address'),
     check('password')
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a value for Password'),
+      .withMessage('Please provide a valid for Password'),
   ];
 
 router.post('/user/login', csrfProtection, loginValidators,
@@ -126,7 +126,7 @@ router.post('/user/login', csrfProtection, loginValidators,
         }
       }
 
-      errors.push('Login failed for the provided email address and password');
+      errors.push('Incorrect Email or password');
     } else {
       errors = validatorErrors.array().map((error) => error.msg);
     }
