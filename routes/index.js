@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-const { csrfProtection, asyncHandler } = require('./utils');
+const express = require('express');
+const router = express.Router();
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'MetaFlow' });
+
+router.get('/', function (req, res, next) {
+	res.render('layout', { title: 'MetaOverflow' });
 });
 
 module.exports = router;

@@ -1,11 +1,27 @@
+//- doctype html
+//- html
+//-   head
+//-       block head
+//-         title MetaOverFlow
+//-         link(rel='stylesheet' href='/stylesheets/layout.css')
+//-   body
+//-     nav(class='navbar')
+//-       a(class='navbar_icon' href='/')
+//-         img(id='logo' src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_auto/c_scale,w_400/v1/ncom/en_US/games/switch/h/hollow-knight-switch/description-image")
+//-       div(class='navbar_center')
+//-       div
+//-         if locals.authenticated
+//-           p Welcome to MetaOverflow
+//-             form(action='/logout' method='post')
+//-               button(type='submit') Logout
+//-         else
+//-           div
+//-             a(href='/login') Login
+//-             a(href='/register') Sign Up
+//-       h1 MetaOverflow
+
+//-     block content
+
 extends layout
 
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
-
 block content
-  h1= title
-  p Welcome to your Project Skeleton
