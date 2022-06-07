@@ -1,4 +1,6 @@
 const db = require('./db/models');
+const session = require('express-session');
+
 
 const loginUser = (req, res, user) => {
 	req.session.auth = {
@@ -7,9 +9,8 @@ const loginUser = (req, res, user) => {
 };
 
 const restoreUser = async (req, res, next) => {
-	console.log(req.session);
 
-	if (req.session.auth) {
+	if (session.auth) {
 		const { userId } = req.session.auth;
 
 		try {
