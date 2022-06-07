@@ -6,6 +6,7 @@ const { loginUser, logoutUser } = require('../auth');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
+
 router.get('/register', csrfProtection, (req, res) => {
 	const user = db.User.build();
 	res.render('sign-up', {
@@ -108,7 +109,7 @@ const loginValidators = [
 ];
 
 router.post(
-	'/login',
+	'/users/login',
 	csrfProtection,
 	loginValidators,
 	asyncHandler(async (req, res) => {
@@ -145,7 +146,7 @@ router.post(
 
 router.post('/logout', (req, res) => {
 	logoutUser(req, res);
-	res.redirect('/');
+	res.redirect('/login');
 });
 
 module.exports = router;
