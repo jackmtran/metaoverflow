@@ -108,6 +108,8 @@ const loginValidators = [
 		.withMessage('Please enter your password.'),
 ];
 
+
+
 router.post(
 	'/login',
 	csrfProtection,
@@ -120,6 +122,10 @@ router.post(
 
 		if (validatorErrors.isEmpty()) {
 			const user = await db.User.findOne({ where: { username } });
+			if(username === 'Demo'){
+				loginUser(req, res, user)
+				return req.session.save(( ) => res.redirect('/')) //maybe
+			}
 			if (user !== null) {
 				const passwordMatch = await bcrypt.compare(
 					password,
@@ -127,13 +133,23 @@ router.post(
 				);
 				if (passwordMatch) {
 					loginUser(req, res, user);
-					return res.redirect('/');
+					// return res.redirect('/');
+					return req.session.save(( ) => res.redirect('/'))
 				}
 			}
 			errors.push('Please enter a valid username and password.');
 		} else {
 			errors = validatorErrors.array().map((error) => error.msg);
 		}
+
+
+
+		// if (passwordMatch) {
+        //     // If the password hashes match, then login the user
+        //     // and redirect them to the default route.
+        //     loginUser(req, res, user);
+
+        // }
 
 		res.render('user-login', {
 			title: 'Login',
