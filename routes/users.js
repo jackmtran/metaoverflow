@@ -1,13 +1,12 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
-const { User } = require('../db/models/user')
 const { csrfProtection, asyncHandler } = require('./utils');
+const bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
-router.get('/user/register', csrfProtection, (req, res) => {
+router.get('/register', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('sign-up', {
     title: 'Register',
@@ -22,7 +21,7 @@ const userValidators = [
     .withMessage('Please provide a value for username')
     .isLength({ max: 50 })
     .withMessage('Username must not be more than 50 characters long'),
-    check('emailAddress')
+    check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Email Address')
     .isLength({ max: 255 })
@@ -30,7 +29,7 @@ const userValidators = [
     .isEmail()
     .withMessage('Email Address is not a valid email')
     .custom((value) => {
-      return db.User.findOne({ where: { emailAddress: value } })
+      return db.User.findOne({ where: { email: value } })
         .then((user) => {
           if (user) {
             return Promise.reject('The provided Email Address is already in use by another account');
@@ -58,18 +57,17 @@ const userValidators = [
   ];
 
 
-router.post('/user/register', csrfProtection, userValidators,
+router.post('/register', csrfProtection, userValidators,
   asyncHandler(async (req, res) => {
     const {
       username,
       email,
-      hashedPassword,
+      password,
     } = req.body;
 
     const user = db.User.build({
       username,
-      email,
-      hashedPassword,
+      email
     });
 
     const validatorErrors = validationResult(req);
