@@ -11,7 +11,7 @@ const usersRouter = require('./routes/users');
 const { csrfProtection, asyncHandler } = require('./routes/utils');
 const csrf = require('csurf');
 const { sessionSecret } = require('./config');
-const { restoreUser } = require('./auth');
+
 
 
 const app = express();
@@ -24,9 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(restoreUser);
-app.use(usersRouter);
-app.use(indexRouter);
+
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 app.use(
@@ -42,8 +40,8 @@ app.use(
 // create Session table if it doesn't already exist
 store.sync();
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(indexRouter);
+app.use(usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

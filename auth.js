@@ -3,7 +3,7 @@ const session = require('express-session');
 
 
 const loginUser = (req, res, user) => {
-	req.session.auth = {
+	req.session.authenticated = {
 		userId: user.id,
 	};
 };
@@ -11,7 +11,7 @@ const loginUser = (req, res, user) => {
 const restoreUser = async (req, res, next) => {
 
 	if (session.auth) {
-		const { userId } = req.session.auth;
+		const { userId } = req.session.authenticated;
 
 		try {
 			const user = await db.User.findByPk(userId);
@@ -32,12 +32,12 @@ const restoreUser = async (req, res, next) => {
 };
 
 const logoutUser = (req, res) => {
-	delete req.session.auth;
+	delete req.session.authenticated;
 };
 
 const requireAuth = (req, res, next) => {
 	if (!res.locals.authenticated) {
-		return res.redirect('/users/login');
+		return res.redirect('/login');
 	}
 	return next();
 };
