@@ -45,7 +45,7 @@ router.post(
 		if (validatorErrors.isEmpty()) {
 			await questions.save();
 			loginUser(req, res, user);
-			res.redirect('/');
+			res.redirect('/questions');
 		} else {
 			const errors = validatorErrors.array().map((error) => error.msg);
 			res.render('sign-up', {

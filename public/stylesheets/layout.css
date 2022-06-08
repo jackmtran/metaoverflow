@@ -61,5 +61,6 @@ h1 {
 }
 
 #logo {
-	width: 200px;
+	width: 40px;
+	align-self: center;
 }

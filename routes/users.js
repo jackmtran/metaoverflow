@@ -7,10 +7,10 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
 
-router.get('/register', csrfProtection, (req, res) => {
+router.get('/signup', csrfProtection, (req, res) => {
 	const user = db.User.build();
 	res.render('sign-up', {
-		title: 'Register',
+		title: 'Sign Up',
 		user,
 		csrfToken: req.csrfToken(),
 	});
@@ -61,7 +61,7 @@ const userValidators = [
 ];
 
 router.post(
-	'/register',
+	'/signup',
 	csrfProtection,
 	userValidators,
 	asyncHandler(async (req, res) => {
@@ -83,7 +83,7 @@ router.post(
 		} else {
 			const errors = validatorErrors.array().map((error) => error.msg);
 			res.render('sign-up', {
-				title: 'Register',
+				title: 'Sign Up',
 				user,
 				errors,
 				csrfToken: req.csrfToken(),
@@ -144,12 +144,12 @@ router.post(
 
 
 
-		// if (passwordMatch) {
-        //     // If the password hashes match, then login the user
-        //     // and redirect them to the default route.
-        //     loginUser(req, res, user);
+		if (passwordMatch) {
+            // If the password hashes match, then login the user
+            // and redirect them to the default route.
+            loginUser(req, res, user);
 
-        // }
+        }
 
 		res.render('user-login', {
 			title: 'Login',
