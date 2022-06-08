@@ -37,15 +37,16 @@ router.post(
 	csrfProtection,
 	questionValidators,
 	asyncHandler(async (req, res) => {
-		const { title, question, categoryId, userId, voteCount } = req.body;
+		const { title, question, voteCount, categoryId, userId } = req.body;
 
 		const categories = await db.Category.findAll();
 		const askQuestion = db.Question.create({
 			title,
 			question,
+			voteCount,
 			categoryId,
 			userId,
-			voteCount
+
 		});
 
 		const validatorErrors = validationResult(req);
