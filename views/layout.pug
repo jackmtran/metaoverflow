@@ -19,5 +19,10 @@ html
         else
           div
             a(href='/users/login') Login
-            a(href='/users/register') Sign Up
+            a(href='/users/signup') Sign Up
+            if locals.authenticated
+              a(href='/questions/new' method='GET'): button.ask-button Ask Question
+            else
+              a(href='/users/login' method='GET' id='logged-out-ask-btn'): button.ask-button Ask Question
+          .right-sidebar-header
 block content

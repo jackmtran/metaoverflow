@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', (e) => {
-    const demoButton = document.getElementById('demo')
+    const demoButton = document.getElementById('demo');
     const username = document.getElementById('username');
     const password = document.getElementById('password');
     if (demoButton) {
