@@ -144,12 +144,12 @@ router.post(
 
 
 
-		if (passwordMatch) {
-            // If the password hashes match, then login the user
-            // and redirect them to the default route.
-            loginUser(req, res, user);
+		// if (passwordMatch) {
+        //     // If the password hashes match, then login the user
+        //     // and redirect them to the default route.
+        //     loginUser(req, res, user);
 
-        }
+        // }
 
 		res.render('user-login', {
 			title: 'Login',
