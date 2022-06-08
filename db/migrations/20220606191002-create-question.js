@@ -14,7 +14,7 @@ module.exports = {
       },
       question: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500)
       },
       voteCount: {
         allowNull: false,

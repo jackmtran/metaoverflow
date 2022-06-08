@@ -1,0 +1,7 @@
+extends layout
+block content
+  body
+    form(action="/questions/new" method="post")
+      select(name="categories" required)
+        each category in categories
+          option(value=category.id)= category.name

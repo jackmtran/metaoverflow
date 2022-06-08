@@ -1,1 +1,13 @@
 extends layout.pug
+block content
+  table
+      thead
+          tr
+              th title
+              th questions
+
+      tbody
+          each q in questions
+              tr
+                  td= q.title
+                  td= q.question

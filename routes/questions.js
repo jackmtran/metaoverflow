@@ -1,20 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const db = require('../db/models');
+const { Question, Category } = require('../db/models')
 const { loginUser, logoutUser } = require('../auth');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
-router.get('/', csrfProtection, (req, res) => {
-	res.render('questions', { title: 'questions'});
+router.get('/', csrfProtection, async(req, res) => {
+	const questions = await Question.findAll()
+
+	res.render('questions', { questions });
 });
 
-router.get('/new', csrfProtection, (req, res) => {
-	const question = db.Question.build();
+router.get('/new', csrfProtection, async(req, res) => {
+	const categories = await db.Category.findAll();
+	const askQuestion = db.Question.build();
+	// console.log(categories)
 	res.render('ask-question', {
-		title: 'New Question',
-    question,
+		categories,
+		askQuestion,
 		csrfToken: req.csrfToken(),
 	});
 });
@@ -29,28 +33,33 @@ const questionValidators = [
 ];
 
 router.post(
-	'/new',
+	'/',
 	csrfProtection,
 	questionValidators,
 	asyncHandler(async (req, res) => {
-		const { title, question } = req.body;
+		const { title, question, categoryId, userId, voteCount } = req.body;
 
-		const questions = db.Question.build({
+		const categories = await db.Category.findAll();
+		const askQuestion = db.Question.create({
 			title,
 			question,
+			categoryId,
+			userId,
+			voteCount
 		});
 
 		const validatorErrors = validationResult(req);
 
 		if (validatorErrors.isEmpty()) {
-			await questions.save();
-			loginUser(req, res, user);
+			await askQuestion.save();
+			loginUser(req, res, question);
 			res.redirect('/questions');
 		} else {
 			const errors = validatorErrors.array().map((error) => error.msg);
-			res.render('sign-up', {
+			res.render('ask-question', {
 				title: 'Register',
-				user,
+				categories,
+				askQuestion,
 				errors,
 				csrfToken: req.csrfToken(),
 			});
