@@ -1,9 +1,9 @@
 doctype html
 html
   head
-      block head
-        title MetaOverFlow
-        link(rel='stylesheet' href='/stylesheets/layout.css')
+    block head
+      title MetaOverFlow
+      link(rel='stylesheet' href='/stylesheets/layout.css')
   body
     nav(class='navbar')
       a(class='navbar_icon' href='/')
@@ -12,7 +12,7 @@ html
       div
         if locals.authenticated
           p Welcome to MetaOverflow
-            form(action='/questions/new' method='post')
+            form(action='/questions/new' method='get')
               button(type='submit') Ask Question
             form(action='/users/logout' method='post')
               button(type='submit') Logout
@@ -20,6 +20,4 @@ html
           div
             a(href='/users/login') Login
             a(href='/users/register') Sign Up
-      h1 MetaOverflow
-
-    block content
+block content

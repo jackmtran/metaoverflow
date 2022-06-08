@@ -1,14 +1,7 @@
-
-
+extends layout.pug
 include utils.pug
-
-html
-  head
-    link(rel='stylesheet' href='/stylesheets/reset.css')
-    script(type="module" src="../javascripts/demoLogin.js")
-  body
-
-    block content
+block content
+    h1 MetaOverflow
       +validationErrorSummary(errors)
       form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
@@ -23,4 +16,4 @@ html
         div
         button(type='submit' class="loginButtons" id='demo') Demo
         div
-        p: a(href='/register') Don't have an account?
+        p: a(href='/users/signup') Don't have an account?
