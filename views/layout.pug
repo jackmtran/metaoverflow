@@ -20,6 +20,7 @@ html
           div
             a(href='/users/login') Login
             a(href='/users/signup') Sign Up
+
             if locals.authenticated
               a(href='/questions/new' method='GET'): button.ask-button Ask Question
             else
