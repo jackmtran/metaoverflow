@@ -12,6 +12,8 @@ html
       div
         if locals.authenticated
           p Welcome to MetaOverflow
+            form(action=`/users/${user.id}` method='get')
+              button(type='submit') Home
             form(action='/questions/new' method='get')
               button(type='submit') Ask Question
             form(action='/users/logout' method='post')

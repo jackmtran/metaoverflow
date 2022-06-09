@@ -8,11 +8,9 @@ block content
             th questions
             th Total Votes
     tbody
-        each q in questions
             tr
-                td= q.title
-                td= q.question
-                td= q.voteCount
-                    form(method="DELETE", action=`/questions/${questions.id}`)
+                td= questions.title
+                td= questions.question
+                td= questions.voteCount
+                     form(method="DELETE", action=`/questions/${questions.id}`)
                         button(type='submit') delete
-
