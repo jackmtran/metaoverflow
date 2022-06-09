@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const { csrfProtection, asyncHandler } = require('./utils');
+const db = require('../db/models');
 
 /* GET home page. */
 
-router.get('/', function (req, res, next) {
-	res.render('layout', { title: 'MetaOverflow' });
+router.get('/', csrfProtection, async(req, res) => {
+	const questions = await db.Question.findAll()
+
+	res.render('questions', { questions });
 });
 
 module.exports = router;
