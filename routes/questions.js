@@ -104,6 +104,7 @@ router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next)
 }))
 
 // delete route works tested on postman but can't get it to pug
+
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 	console.log("test here")
 
@@ -120,6 +121,7 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   // } else {
   //   next(questionNotFoundError);
   // }
+
 }))
 
 module.exports = router;

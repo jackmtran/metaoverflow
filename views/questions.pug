@@ -10,7 +10,7 @@ block content
     tbody
         each q in questions
             tr
-                td= q.title
-                td= q.question
+                td
+                  a(href=`/questions/${q.id}`) #{q.title}
+                td #{q.question}
                 td= q.voteCount
-
