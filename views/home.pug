@@ -1,16 +1,13 @@
 extends layout.pug
 include utils.pug
 block content
-  table
-    thead
-        tr
-            th title
-            th questions
-            th Total Votes
-    tbody
-        each q in questions
-            tr
-                td= q.title
-                td= q.question
-                td= q.voteCount
-                  button(class='delete-btn' id=`delete-question-${q.id}`) Delete
+  div
+    table
+      thead
+      tbody
+      each q in question
+        div(id=`question-container-${question.id}`).single-question-container
+          h1(id=`${q.id}-title`)= q.title
+          h2 Question:
+          p(id=`${q.id}-content`)= q.question
+            button(class='delete-btn' id=`delete-question-${q.id}`) Delete
