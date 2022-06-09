@@ -1,16 +1,18 @@
 extends layout.pug
 include utils.pug
 block content
-  table
-    thead
-        tr
-            th title
-            th questions
-            th Total Votes
-    tbody
-            tr
-                td= questions.title
-                td= questions.question
-                td= questions.voteCount
-                     form(method="DELETE", action=`/questions/${questions.id}`)
-                        button(type='submit') delete
+  div
+    table
+      thead
+          tr
+              th title
+              th question
+              th Total Votes
+      tbody
+        div(id=`question-container-${question.id}`).single-question-container
+          h2(id=`${question.id}-title`)= question.title
+          p(id=`${question.id}-content`)= question.question
+            button(class='delete-btn' id=`delete-question-${question.id}`) Delete
+              //- each a in answers
+              //-   div(id=`answer-conatiner-${a.id}`).single-answer.container
+              //-     h3(id=`${a.id}`)=answers.answer
