@@ -62,10 +62,10 @@ const loginValidators = [
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const questionId = parseInt(req.params.id, 10);
 	console.log(questionId);
-  const questions = await db.Question.findAll({
+  const question = await db.Question.findAll({
 		where: { userId: questionId }
 	});
-    res.render('home', { questions });
+    res.render('home', { question });
 }));
 
 router.get('/signup', csrfProtection, (req, res) => {
