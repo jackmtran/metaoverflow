@@ -5,11 +5,36 @@ const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
+const questionNotFoundError = (id) => {
+  const err = Error(`Tweet with id ${id} not found.`);
+  err.title = 'Tweet not found.';
+  err.status = 404;
+  return err;
+}
+
+const questionValidators = [
+	check('title')
+		.exists({ checkFalsy: true })
+		.withMessage('Please enter your title.'),
+	check('question')
+		.exists({ checkFalsy: true })
+		.withMessage('Please enter your question.'),
+];
 
 router.get('/', csrfProtection, async(req, res) => {
 	const questions = await db.Question.findAll()
 	res.render('questions', { questions });
 });
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const questionId = parseInt(req.params.id, 10);
+  const questions = await db.Question.findByPk(questionId);
+  if (questions) {
+    res.render('singleQuestion', { questions });
+  } else {
+    next(questionNotFoundError(questionId));
+  };
+}));
 
 router.get('/new', csrfProtection, async(req, res) => {
 	const categories = await db.Category.findAll();
@@ -22,20 +47,8 @@ router.get('/new', csrfProtection, async(req, res) => {
 	});
 });
 
-const questionValidators = [
-	check('title')
-		.exists({ checkFalsy: true })
-		.withMessage('Please enter your title.'),
-	check('question')
-		.exists({ checkFalsy: true })
-		.withMessage('Please enter your question.'),
-];
 
-router.post(
-	'/',
-	csrfProtection,
-	questionValidators,
-	asyncHandler(async (req, res) => {
+router.post( '/', csrfProtection, questionValidators, asyncHandler(async (req, res) => {
 		const { title, question, voteCount, categoryId, userId } = req.body;
 
 		const categories = await db.Category.findAll();
@@ -65,53 +78,34 @@ router.post(
 	})
 );
 
-// router.delete('/:id(\\d+)', async(req, res) => {
-// 	// console.log('you have arrived at the delete route handler')
-// 	const post = await db.Question.findByPk(req.question.id)
-// 	await post.destroy()
+//edit route can't get to work currently on postman have a questions...
+// To edit do we need to update everything or can it just be a part of the data 
+router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next) => {
+	const questionId = parseInt(req.params.id, 10);
+  const questions = await db.Question.findByPk(questionId);
+  if (questions) {
+    await questions.update({
+			title: res.body.title,
+			question: req.body.question,
+		});
+    res.json({ questions });
+		res.redirect('/questions/:id')
+  } else {
+    next(questionNotFoundError);
+  }
+}))
 
-// 	res.json({message: 'Success!'})
-// })
-
-// router.delete(
-// 	'/:id(\\d+)/delete',
-// 	csrfProtection,
-// 	requireAuth,
-// 	restoreUser,
-// 	asyncHandler(async (req, res) => {
-// 			const questionId = parseInt(req.params.id, 10);
-// 			const question = await db.Question.findByPk(questionId);
-
-// 			checkPermissions(question, res.locals.user);
-// 			await question.destroy();
-// 			res.redirect('/');
-// 	})
-// );
-// router.delete('/'), async(req, res) => {
-// 	const question = await db.Question.findOne(req.title)
-// 	await question.destroy({
-// 			where: {
-// 					title
-// 			}
-// 	});
-// 	res.redirect('/');
-// }
-
-router.put('/'), async(req, res) => {
-	const { id } = req.body;
-	const { title, question, categoryId, userId, voteCount } = req.body;
-	const questionUpdate = await Question.update({
-			title,
-			question,
-			categoryId,
-			userId,
-			voteCount
-	}, {
-			where: {
-					id
-			}
-	});
-	res.redirect('/');
-}
+// delete route works tested on postman but can't get it to pug
+router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+	const questionId = parseInt(req.params.id, 10);
+  const questions = await db.Question.findByPk(questionId);
+  if (questions) {
+    await questions.destroy();
+		res.redirect('/questions');
+    res.status(204).end();
+  } else {
+    next(questionNotFoundError);
+  }
+}))
 
 module.exports = router;
