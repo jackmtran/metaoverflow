@@ -4,15 +4,16 @@ block content
   div
     table
       thead
-          tr
-              th title
-              th question
-              th Total Votes
       tbody
         div(id=`question-container-${question.id}`).single-question-container
-          h2(id=`${question.id}-title`)= question.title
+          h1(id=`${question.id}-title`)= question.title
+          h2 Question:
           p(id=`${question.id}-content`)= question.question
+          if loggedInUser === question.userId
             button(class='delete-btn' id=`delete-question-${question.id}`) Delete
-              each a in answers
-                div(id=`answer-conatiner-${a.id}`).single-answer.container
-                  h3(id=`${a.id}`)=answers.answer
+        div(id=`answers-container-${a.id}`).answers-container
+          each a in answers
+              div(id=`answer-container-${a.id}`).single-answer.container
+                h2 Answer
+                h3(id=`${a.id}`)=a.answer
+                if loggedInUser === answer.userId
