@@ -11,9 +11,9 @@ block content
           p(id=`${question.id}-content`)= question.question
           if loggedInUser === question.userId
             button(class='delete-btn' id=`delete-question-${question.id}`) Delete
-        div(id=`answers-container-${a.id}`).answers-container
+        div(id=`answers-container-${answers.id}`).answers-container
           each a in answers
               div(id=`answer-container-${a.id}`).single-answer.container
                 h2 Answer
                 h3(id=`${a.id}`)=a.answer
-                if loggedInUser === answer.userId
+                if loggedInUser === a.userId
