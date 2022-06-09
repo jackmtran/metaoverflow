@@ -13,6 +13,6 @@ block content
           h2(id=`${question.id}-title`)= question.title
           p(id=`${question.id}-content`)= question.question
             button(class='delete-btn' id=`delete-question-${question.id}`) Delete
-              //- each a in answers
-              //-   div(id=`answer-conatiner-${a.id}`).single-answer.container
-              //-     h3(id=`${a.id}`)=answers.answer
+              each a in answers
+                div(id=`answer-conatiner-${a.id}`).single-answer.container
+                  h3(id=`${a.id}`)=answers.answer

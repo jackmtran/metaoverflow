@@ -186,15 +186,8 @@ module.exports = {
       questionId: 23,
       createdAt: new Date(),
       updatedAt: new Date()
-    },
-    {
-      answer: "Have you tried getting good?",
-      voteCount: 0,
-      userId: 8,
-      questionId: 24,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {});
+    }
+    ], {});
   },
 
   down: (queryInterface, Sequelize) => {
