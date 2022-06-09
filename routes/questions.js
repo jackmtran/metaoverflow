@@ -6,8 +6,8 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
 const questionNotFoundError = (id) => {
-  const err = Error(`Tweet with id ${id} not found.`);
-  err.title = 'Tweet not found.';
+  const err = Error(`Question with id ${id} not found.`);
+  err.title = 'That question does not exist';
   err.status = 404;
   return err;
 }
@@ -28,9 +28,16 @@ router.get('/', csrfProtection, async(req, res) => {
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const questionId = parseInt(req.params.id, 10);
-  const questions = await db.Question.findByPk(questionId);
-  if (questions) {
-    res.render('singleQuestion', { questions });
+  const question = await db.Question.findByPk(questionId);
+	const answers = await db.Answer.findAll({
+		where: { questionId }
+	});
+	let loggedInUser
+	if (req.session.auth) {
+			loggedInUser = req.session.auth.userId
+	}
+  if (question) {
+    res.render('singleQuestion', { question, answers });
   } else {
     next(questionNotFoundError(questionId));
   };
@@ -39,6 +46,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 router.get('/new', csrfProtection, async(req, res) => {
 	const categories = await db.Category.findAll();
 	const askQuestion = db.Question.build();
+
 	// console.log(categories)
 	res.render('ask-question', {
 		categories,
@@ -79,7 +87,7 @@ router.post( '/', csrfProtection, questionValidators, asyncHandler(async (req, r
 );
 
 //edit route can't get to work currently on postman have a questions...
-// To edit do we need to update everything or can it just be a part of the data 
+// To edit do we need to update everything or can it just be a part of the data
 router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next) => {
 	const questionId = parseInt(req.params.id, 10);
   const questions = await db.Question.findByPk(questionId);
@@ -97,12 +105,12 @@ router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next)
 
 // delete route works tested on postman but can't get it to pug
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+	console.log("test here")
 	const questionId = parseInt(req.params.id, 10);
   const questions = await db.Question.findByPk(questionId);
   if (questions) {
     await questions.destroy();
-		res.redirect('/questions');
-    res.status(204).end();
+		res.redirect('/questions')
   } else {
     next(questionNotFoundError);
   }

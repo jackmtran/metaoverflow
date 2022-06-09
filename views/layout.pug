@@ -4,6 +4,7 @@ html
     block head
       title MetaOverFlow
       link(rel='stylesheet' href='/stylesheets/layout.css')
+      script(src='../javascripts/questionDelete.js' type="module")
   body
     nav(class='navbar')
       a(class='navbar_icon' href='/')
@@ -28,5 +29,5 @@ html
             else
               a(href='/users/login' method='GET' id='logged-out-ask-btn'): button.ask-button Ask Question
           .right-sidebar-header
-block content
+    block content
 include footer.pug
