@@ -12,6 +12,8 @@ html
       div
         if locals.authenticated
           p Welcome to MetaOverflow
+            form(action=`/users/${user.id}` method='get')
+              button(type='submit') Home
             form(action='/questions/new' method='get')
               button(type='submit') Ask Question
             form(action='/users/logout' method='post')
@@ -27,3 +29,4 @@ html
               a(href='/users/login' method='GET' id='logged-out-ask-btn'): button.ask-button Ask Question
           .right-sidebar-header
 block content
+include footer.pug

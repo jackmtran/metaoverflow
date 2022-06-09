@@ -1,4 +1,8 @@
+const db = require('../../db/models')
+
 console.log('Hello from delete script')
+
+
 
 const deleteBtns = document.querySelectorAll('.delete-btn')
 
@@ -8,7 +12,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
     btn.addEventListener('click', async(e) => {
         e.preventDefault()
         const questionId = e.target.id.split('-')[2]
-        const res = await fetch(`/questions/${questionId}`, {
+        const res = await fetch(`/questions/${db.Question.id}`, {
             method: 'DELETE'
         })
 
