@@ -47,7 +47,6 @@ router.get('/new', csrfProtection, async(req, res) => {
 	const categories = await db.Category.findAll();
 	const askQuestion = db.Question.build();
 
-	// console.log(categories)
 	res.render('ask-question', {
 		categories,
 		askQuestion,
@@ -86,8 +85,6 @@ router.post( '/', csrfProtection, questionValidators, asyncHandler(async (req, r
 	})
 );
 
-//edit route can't get to work currently on postman have a questions...
-// To edit do we need to update everything or can it just be a part of the data
 router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next) => {
 	const questionId = parseInt(req.params.id, 10);
   const questions = await db.Question.findByPk(questionId);
@@ -103,25 +100,14 @@ router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next)
   }
 }))
 
-// delete route works tested on postman but can't get it to pug
-
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 	console.log("test here")
 
 	const questionId = parseInt(req.params.id, 10);
   const questions = await db.Question.findByPk(questionId);
-	// console.log(questions)
-	// const answers = await db.Answer.findAll({
-	// 	where: { questionId }
-	// });
-  // if (questions) {
 			await questions.destroy();
 			console.log('deleted')
 			res.redirect('/questions')
-  // } else {
-  //   next(questionNotFoundError);
-  // }
-
 }))
 
 module.exports = router;
