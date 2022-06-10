@@ -8,7 +8,7 @@ block content
         div(id=`question-container-${question.id}`).single-question-container
           h1(id=`${question.id}-title`)= question.title
           h2 Question:
-          p(id=`${question.id}-content`)= question.question
+          p(id=`${question.id}-question`)= question.question
           if loggedInUser === question.userId
             label Title
             input(type="text" name="title" value=question.title id=`${question.id}-edit-title`)

@@ -1,0 +1,81 @@
+.askQuestion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.formz {
+    margin-top: 1rem;
+    background-color: #f8f9f9;
+    padding-bottom: 1rem;
+    max-width: fit-content;
+}
+
+#title {
+    background-color: #f8f9f9;
+    margin-bottom: 1rem;
+}
+
+#question {
+    background-color: #f8f9f9;
+}
+
+.question-box {
+    border: 3px solid black;
+    padding: 3rem;
+    background-color: #f8f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 5px 30px rgb(0, 0, 0);
+}
+
+label {
+    background-color: #f8f9f9;
+}
+
+.button {
+    border-radius: 8px;
+    background-color: white; color: black;
+}
+
+.py-4 {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.cancel-atag {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9f9;
+}
+
+form {
+    background-color: #f8f9f9;
+}
+
+select {
+    background-color: #f8f9f9;
+    margin-bottom: 1rem;
+}
+
+option {
+    background-color: #f8f9f9;
+}
+
+p {
+    background-color: #f8f9f9;
+}
+
+textarea {
+    background-color: #f8f9f9;
+}
+
+#your-question {
+    background-color: #f8f9f9;
+    font-style: bold;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
