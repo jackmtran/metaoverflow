@@ -3,8 +3,9 @@ include utils.pug
 block content
   div
     table
-      thead
-      tbody
+      head
+        script(src='../javascripts/answerDom.js' type="module")
+      body
         div(id=`question-container-${question.id}`).single-question-container
           h1(id=`${question.id}-title`)= question.title
           h2 Question:
