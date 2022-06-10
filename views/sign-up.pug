@@ -1,17 +1,26 @@
 extends layout.pug
 include utils.pug
-block content
 
-  h1 MetaOverflow
-    +validationErrorSummary(errors)
-    form(action='/users/signup' method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
-      +field('Username', 'username', user.username)
-      +field('Email Address', 'email', user.email)
-      +field('Password', 'password', user.hashedPassword, 'password')
-      +field('Confirm Password', 'confirmPassword', '', 'password')
-      div(class='py-4')
-        button(type='submit' class='btn btn-primary') Register
-        a(href='/' class='btn btn-warning ml-2') Cancel
-    div
-      p: a(href='/users/login') Already have an account?
+  head
+    link(rel='stylesheet' href='/stylesheets/sign-up.css')
+  body
+block content
+  div(class='signup-container')
+    div(class='name-signup')
+      p(id='meta_flow2') MetaOverflow
+        +validationErrorSummary(errors)
+        form(action='/users/signup' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div(class='input_fieldz')
+            div(id='user-name')
+              +field('Username ', 'username', user.username)
+            div(id='email_addy')
+              +field('Email Address ', 'email', user.email)
+            div(id='password')
+              +field('Password ', 'password', user.hashedPassword, 'password')
+            div(id='confirm-password')
+              +field('Confirm Password ', 'confirmPassword', '', 'password')
+            div(class='buttonz')
+              button(class='button' type='submit' class='btn btn-primary') Register
+        div
+          p: a(id='ahac' href='/users/login') Already have an account?
