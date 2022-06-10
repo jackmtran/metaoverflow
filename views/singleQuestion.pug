@@ -20,10 +20,10 @@ block content
                 form(id='answerform' method='POST' action='/answer')
                 input(type='text' value= '' id= 'Answer-submit-form')
                 input(type='submit' value='Leave Answer' id= 'Answer-submit-btn' onClick="document.location.reload(true)")
-         h2 Answers:
-           each a in answers
-             div(id=`answer-container-${a.id}`).single-answer.container
-               h3(id=`${a.id}`)=a.answer
+        h2 Answers:
+          each a in answers
+            div(id=`answer-container-${a.id}`).single-answer.container
+              h3(id=`${a.id}`)=a.answer
         div(class='leave_answer')
           textarea(name="answer_form", cols="50", rows="10")
         a(href='/answer' method='GET'): button.answer-button Submit Answer
