@@ -1,23 +1,23 @@
 extends layout.pug
 include utils.pug
+
   head
-    link(rel='stylesheet' href='/stylesheets/reset.css')
+    link(rel='stylesheet' href='/stylesheets/login.css')
     script(type="module" src="../javascripts/demo.js")
   body
 block content
-    h1 MetaOverflow
+  div(class='login_container')
+    div(id='name-login')
+      p(id='meta_flow') MetaOverflow
       +validationErrorSummary(errors)
       form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Username', 'username', username)
-        +field('Password', 'password', null, 'password')
+        div(id='user-name')
+          +field('Username ', 'username', username)
+        div(id='password')
+          +field('Password ', 'password', null, 'password')
+        div(class='buttonz')
+          button(class='button' type='submit' id='login') Login
+          button(class='button' type='submit' class="loginButtons" id='demo') Demo
         div
-          button(type='submit' id='login') Login
-        div
-        div
-            a(href='/') Cancel
-        div
-        div
-        button(type='submit' class="loginButtons" id='demo') Demo
-        div
-        p: a(href='/users/signup') Don't have an account?
+        p: a(id='dhac' href='/users/signup') Don't have an account?
