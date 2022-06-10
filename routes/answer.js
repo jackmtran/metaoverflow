@@ -8,18 +8,18 @@ router.get('/', csrfProtection, asyncHandler (async(req, res) => {
 }));
 
 
-router.post( '/', csrfProtection, asyncHandler(async (req, res) => {
-    console.log(req.body);
+router.post( '/:id(\\d+)', asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10);
     const { answer } = await req.body
     const addAnswer = db.Answer.build({
         answer: answer,
         voteCount: 0,
         userId: 1,
-        questionId: 1
+        questionId: questionId
     });
 
     await addAnswer.save();
-	    res.redirect('/questions');
+	// res.redirect(`/questions/${questionId}`);
 })
 );
 

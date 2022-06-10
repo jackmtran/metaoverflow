@@ -11,4 +11,4 @@ window.addEventListener('DOMContentLoaded', (e) => {
       password.value = 'Demo100!';
     })
   }
-  })
+})
