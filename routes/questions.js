@@ -86,14 +86,15 @@ router.post( '/', csrfProtection, questionValidators, asyncHandler(async (req, r
 
 router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next) => {
   const questionId = parseInt(req.params.id, 10);
-  const questions = await db.Question.findByPk(questionId);
-  if (questions) {
-    await questions.update({
-			title: res.body.title,
-			question: req.body.question,
-		});
-    res.json({ questions });
-		res.redirect('/questions/:id')
+  const question = await db.Question.findByPk(questionId);
+
+  if (question) {
+    await question.update({
+            title: req.body.title,
+            question: req.body.question,
+        });
+
+        res.send({message: 'Success!', question})
   } else {
     next(questionNotFoundError);
   }
