@@ -1,16 +1,15 @@
 extends layout.pug
 include utils.pug
 block content
-  table(class='table')
-    thead(class='thead')
-        tr
-          th(class='title') Title
-            //- th questions
-          th Total Votes
-    tbody(class='tbody')
-      each q in questions
-        tr(class='tr')
-          td(class='td_questions')
-            a(href=`/questions/${q.id}`) #{q.title}
-          td(class='td_votes')= q.voteCount
-            //- td #{q.question}
+  div(class='topq_container')
+    head
+    body
+      div(id="questions-containers").questions-container
+        div(id='h1_container')
+          h1(id="questionH1") Question
+          h1(id="voteCountH1") Total Votes
+        div
+          each q in questions
+            div(class='spacing' id=`question-container-${q.id}`).single-question-container
+              a(class='homeTitles' href=`/questions/${q.id}`) #{q.title}
+              p(class='homeVotes' id=`${q.id}-content`)= q.voteCount

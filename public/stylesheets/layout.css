@@ -9,7 +9,7 @@ a {
 
 * {
 	box-sizing: border-box;
-	background-color: #e6e4e4;
+	background-color: #b9b8b8;
 }
 
 h1,
@@ -87,52 +87,49 @@ h1 {
 	margin-right: 1rem;
 }
 
-.table {
-	margin-left: auto;
-	margin-right: auto;
-	border-collapse: separate;
-	border-spacing: 4rem;
-	padding: auto;
-	/* border: 1px solid black; */
-}
-
-/* table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-} */
-
-/* th, td {
-	padding: 15px
-} */
-
-/* .table, th, td {
-	border: 1px solid black;
-	padding: 2rem;
-} */
-
-.title {
+.topq_container {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 }
 
+.homeTitles {
+	width: 50%;
+	height: 25%;
+	display: inline-flex;
+	margin-right: 2rem;
+	text-decoration: none;
+}
 
-/* /* .td_questions {
+#h1_container {
+	display: flex;
+	justify-content: center;
+}
+
+#questionH1 {
+	display: flex;
+	/* justify-content: flex-start; */
+	align-items: flex-start;
+	height: 20px;
+	margin-right: 18rem;
+}
+
+.homeVotes {
+	width: 25%;
+	height: 25%;
+	display: inline-flex;
+	margin-left: 5rem;
+	justify-content: flex-end;
+}
+
+.spacing {
 	padding: 2rem;
-	border: 1px solid black;
+	border: 2px solid white;
+	margin: 2rem;
+	/* border-top: transparent;
 	border-right: transparent;
-	margin: 2.5rem;
+	border-bottom: transparent; */
 }
 
-.td_votes {
-	padding: 2rem;
-	border: 1px solid black;
-	/* border-left: transparent; */
-	/* margin-right: .5rem;
-} */
-
-.tr, table {
-	border: 1px solid black;
-}
 
 .login {
 	margin-right: .5rem;
@@ -152,4 +149,5 @@ a#logged-out-ask-btn {
 
 .welcome {
 	margin-top: .5rem;
+	text-decoration: none;
 }
