@@ -14,10 +14,9 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         div(id='user-name')
           +field('Username ', 'username', username)
-        div(id='password')
           +field('Password ', 'password', null, 'password')
         div(class='buttonz')
           button(class='button' type='submit' id='login') Login
-          button(class='button' type='submit' class="loginButtons" id='demo') Demo
+          button(type='submit' class="button" id='demo') Demo User
         div
         p: a(id='dhac' href='/users/signup') Don't have an account?
