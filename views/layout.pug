@@ -31,6 +31,6 @@ html
         if locals.authenticated
           span(class='nav_button')
             form(action='/users/logout' method='post')
-                button(type='submit' id='logout_button') Logout
+                button(class='button' type='submit' id='logout_button') Logout
     block content
 include footer.pug

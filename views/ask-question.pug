@@ -1,18 +1,26 @@
 extends layout.pug
 include utils.pug
 block content
-
-  +validationErrorSummary(errors)
-  form(action='/questions' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    input(type='hidden' name='userId' value=`${user.id}`)
-    input(type='hidden' name='voteCount' value= 0 )
-    +field('Title', 'title', askQuestion.title)
-    +field('Question', 'question', askQuestion.question)
-    label Game:
-    select(name="categoryId" required)
-            each category in categories
-              option(value=category.id)= category.name
-    div(class='py-4')
-      button(type='submit' class='btn btn-primary') Submit
-      a(href='/' class='btn btn-warning ml-2') Cancel
+  head
+    link(rel='stylesheet' href='/stylesheets/askquestion.css')
+  body
+  div(class= 'askQuestion-container')
+    div(class= 'question-box')
+      p(id='your-question') Your Question:
+        +validationErrorSummary(errors)
+        form(action='/questions' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          input(type='hidden' name='userId' value=`${user.id}`)
+          input(type='hidden' name='voteCount' value= 0 )
+          div(class='formz')
+            +field('Title ', 'title', askQuestion.title)
+            label Question:
+            textarea(id= "Question" name="question" cols="30", rows="10")= askQuestion.question
+          label Game:
+          select(name="categoryId" required)
+                  each category in categories
+                    option(value=category.id)= category.name
+          div(class='py-4')
+            button(type='submit' class='button') Submit
+          div
+            a(href='/' class='cancel-atag') Cancel
