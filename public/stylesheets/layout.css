@@ -4,12 +4,12 @@ body {
 }
 
 a {
-	color: #F8F9F9;
+	color: #f8f9f9;
 }
 
 * {
 	box-sizing: border-box;
-	background-color:#e6e4e4;
+	background-color: #e6e4e4;
 }
 
 h1,
@@ -40,35 +40,116 @@ h1 {
 	font-size: 2rem;
 }
 
+.navbar_icon {
+	width: 2rem;
+	height: 25%;
+}
 .navbar {
-	background-color:#F8F9F9;
-	grid-template-columns: 1fr 3fr 1fr;
-	grid-template-areas: 'left center right';
-	position:static;
-	width: auto;
-	height:65px;
-    border-top: 3px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    display: block;
+	position: sticky;
+	margin-bottom: 15px;
+	width: 100%;
+	height: 50px;
+	display: inline-flex;
+	justify-content: space-between;
+	background-color: #f8f9f9;
+	border-top: 3px solid lightgray;
+	border-bottom: 1px solid lightgray;
 }
 
-/* .navbar_icon {
-	grid-area: left;
+.nav_left{
+	width: 100%;
+}
+
+.nav_right {
+	display: flex;
+	justify-content: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.navbar_icon {
+	display: inline-flex;
+}
+
+.navbar_right {
+	min-width:250px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	grid-area: center;
+}
+
+.home_ask {
+	margin-left: 4rem;
+}
+
+.home {
+	margin-right: 1rem;
+}
+
+.table {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: separate;
+	border-spacing: 4rem;
+	padding: auto;
+	/* border: 1px solid black; */
+}
+
+/* table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
 } */
 
-.nav_button {
-position:absolute;
+/* th, td {
+	padding: 15px
+} */
+
+/* .table, th, td {
+	border: 1px solid black;
+	padding: 2rem;
+} */
+
+.title {
+	display: flex;
+	justify-content: flex-start;
 }
 
-.navbar_center {
-	width: 500px;
+
+/* /* .td_questions {
+	padding: 2rem;
+	border: 1px solid black;
+	border-right: transparent;
+	margin: 2.5rem;
 }
+
+.td_votes {
+	padding: 2rem;
+	border: 1px solid black;
+	/* border-left: transparent; */
+	/* margin-right: .5rem;
+} */
+
+.tr, table {
+	border: 1px solid black;
+}
+
+.login {
+	margin-right: .5rem;
+}
+
 
 #logo {
-	width: 27px;
+	width: 30px;
 	align-self: center;
+	margin-top: 1.5rem;
+	margin-right: .5rem;
 }
 
 a#logged-out-ask-btn {
 	justify-content: flex-start;
+}
+
+.welcome {
+	margin-top: .5rem;
 }
