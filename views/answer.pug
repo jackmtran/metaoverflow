@@ -1,9 +1,0 @@
-extends layout.pug
-include utils.pug
-block content
-
-  form(id='answerform' method='POST' action='/answer')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    label Answer
-    input(type='text' name='answer')
-    input(type='submit' value='submit')
