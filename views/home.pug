@@ -10,4 +10,5 @@ block content
           h1(id=`${q.id}-title`)= q.title
           h2 Question:
           p(id=`${q.id}-content`)= q.question
-            button(class='delete-btn' id=`delete-question-${q.id}`) Delete
+            if loggedInUser === question.userId
+              button(class='delete-btn' id=`delete-question-${question.id}`) Delete

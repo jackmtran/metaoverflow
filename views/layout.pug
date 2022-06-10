@@ -5,6 +5,7 @@ html
       title MetaOverFlow
       link(rel='stylesheet' href='/stylesheets/layout.css')
       script(src='../javascripts/questionDelete.js' type="module")
+      script(src='../javascripts/editQuestion.js' type="module")
   body
     nav(class='navbar')
       a(class='navbar_icon' href='/')
@@ -14,11 +15,11 @@ html
         if locals.authenticated
           p Welcome to MetaOverflow
             form(action=`/users/${user.id}` method='get')
-              button(type='submit') Home
+              button(class='navButton' type='submit' ) Home
             form(action='/questions/new' method='get')
-              button(type='submit') Ask Question
+              button(class='navButton' type='submit') Ask Question
             form(action='/users/logout' method='post')
-              button(type='submit') Logout
+              button(class='navButton' type='submit') Logout
         else
           div
             a(href='/users/login') Login

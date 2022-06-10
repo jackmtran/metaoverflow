@@ -65,7 +65,11 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const question = await db.Question.findAll({
 		where: { userId: questionId }
 	});
-    res.render('home', { question });
+	let loggedInUser
+	if (req.session.auth) {
+			loggedInUser = req.session.auth.userId
+	}
+    res.render('home', { question, loggedInUser });
 }));
 
 router.get('/signup', csrfProtection, (req, res) => {
