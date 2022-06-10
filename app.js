@@ -9,11 +9,10 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const editRouter = require('./routes/edit');
-const { csrfProtection, asyncHandler } = require('./routes/utils');
-const csrf = require('csurf');
+const questionRouter = require('./routes/questions')
+const answerRouter = require('./routes/answer')
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth')
-const questionRouter = require('./routes/questions')
 // test
 const app = express();
 
@@ -42,6 +41,7 @@ app.use(
 store.sync();
 app.use(restoreUser);
 app.use('/',indexRouter);
+app.use('/answer', answerRouter)
 app.use('/users',usersRouter);
 app.use('/questions', questionRouter)
 app.use('/edit', editRouter)

@@ -37,7 +37,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 			loggedInUser = req.session.auth.userId
 	}
   if (question) {
-    res.render('singleQuestion', { question, answers });
+    res.render('singleQuestion', { question, answers, loggedInUser });
   } else {
     next(questionNotFoundError(questionId));
   };
@@ -86,7 +86,7 @@ router.post( '/', csrfProtection, questionValidators, asyncHandler(async (req, r
 );
 
 router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next) => {
-	const questionId = parseInt(req.params.id, 10);
+  const questionId = parseInt(req.params.id, 10);
   const questions = await db.Question.findByPk(questionId);
   if (questions) {
     await questions.update({
@@ -101,12 +101,9 @@ router.put('/:id(\\d+)', questionValidators, asyncHandler(async (req, res, next)
 }))
 
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-	console.log("test here")
-
 	const questionId = parseInt(req.params.id, 10);
-  const questions = await db.Question.findByPk(questionId);
+	const questions = await db.Question.findByPk(questionId);
 			await questions.destroy();
-			console.log('deleted')
 			res.redirect('/questions')
 }))
 

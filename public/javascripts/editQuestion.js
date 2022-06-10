@@ -1,16 +1,21 @@
-window.addEventListener('DOMContentLoaded', (e) => {
-  const editQuestion = document.getElementsByClassName('btn btn-primary');
-// add event listner to edit
-  for (let i = 0; i < editQuestion.length; i++) {
-      editQuestion[i].addEventListener('click', (e) => {
-          console.log('clicked');
-          const questionId = e.target.id;
-          const question = document.getElementById(questionId);
-          const questionText = question.innerText;
-          const questionTextArea = document.getElementById('questionTextArea');
-          questionTextArea.value = questionText;
-      }
-      );
-  }
+const editBtns = document.querySelectorAll('.edit-btn')
+
+for (let i = 0; i < editBtns.length; i++) {
+    const bton = editBtns[i];
+
+    bton.addEventListener('click', async(e) => {
+        const EditedId = e.target.id.split('-')[2]
+        console.log(EditedId);
+        const res = await fetch(`/question/${EditedId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              title,
+              question
+          })
+      })
+        if (res) {
+            window.location.href=('/questions')
+        }
+    })
 }
-);
