@@ -14,7 +14,7 @@ block content
             label Title
             input(type="text" name="title" value=question.title id=`${question.id}-edit-title`)
             label Question
-            input(type="text" name="question" value=question.question id=`${question.id}-edit-question`)
+            textarea(cols="30", rows="10" type="text" name="question" value=question.question id=`${question.id}-edit-question`)
             button(class='edit-btn' id=`edit-question-${question.id}`) Edit Question
             button(class='delete-btn' id=`delete-question-${question.id}`) Delete Question
         h2 Submited answers:
