@@ -29,6 +29,7 @@
     margin-top: 1rem;
     background-color: #f8f9f9;
     padding-bottom: 1rem;
+    max-width: fit-content;
 }
 
 #password {
