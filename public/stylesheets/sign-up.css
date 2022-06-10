@@ -1,14 +1,11 @@
-.login_container {
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
-
-    /* border: 3px solid white; */
-    /* margin-bottom: 2rem; */
 }
 
-#name-login {
+.name-signup {
     border: 3px solid black;
     padding: 2rem;
     background-color: #f8f9f9;
@@ -16,7 +13,7 @@
     box-shadow: 0px 5px 30px rgb(0, 0, 0);
 }
 
-#meta_flow {
+#meta_flow2 {
     background-color: #f8f9f9;
     font-style: bold;
     font-weight: bold;
@@ -28,10 +25,21 @@
 #user-name {
     margin-top: 1rem;
     background-color: #f8f9f9;
+    padding-bottom: .5rem;
+}
+
+#email_addy {
+    margin-top: 1rem;
+    background-color: #f8f9f9;
     padding-bottom: 1rem;
 }
 
 #password {
+    background-color: #f8f9f9;
+    margin-bottom: .5rem;
+}
+
+#confirm-password {
     background-color: #f8f9f9;
     margin-bottom: 1rem;
 }
@@ -46,23 +54,42 @@
     justify-content: space-around;
 }
 
-#dhac {
+#ahac {
     display: flex;
     justify-content: center;
-}
-
-label {
-    background-color: #f8f9f9;
+    background-color: #f8f9f9
 }
 
 #username.form-control {
     background-color: #f8f9f9;
 }
 
-p {
+#email.form-control {
     background-color: #f8f9f9;
 }
 
+#confirmPassword.form-control {
+    background-color: #f8f9f9;
+
+}
+
+label {
+    background-color: #f8f9f9;
+    margin-right: 2rem;
+}
+
 form {
+    background-color: #f8f9f9;
+}
+
+.form-group {
+    max-width: fit-content;
+}
+
+li {
+    max-width: fit-content;
+}
+
+p {
     background-color: #f8f9f9;
 }
