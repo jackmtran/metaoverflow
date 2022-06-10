@@ -8,28 +8,29 @@ html
       script(src='../javascripts/editQuestion.js' type="module")
       script(src='../javascripts/answerDom.js' type="module")
   body
-    nav(class='navbar')
-      a(class='navbar_icon' href='/')
-        img(id='logo' src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_auto/c_scale,w_400/v1/ncom/en_US/games/switch/h/hollow-knight-switch/description-image")
-      div(class='navbar_center')
-      div
+    div(class='navbar')
+      div(class='nav_left')
+        a(class='navbar_icon' href='/')
+          img(id='logo' src="https://s3-alpha-sig.figma.com/img/1caf/6f20/3eea50d60525fe8e63664571683f0b6f?Expires=1655683200&Signature=fqwbtGyPRCvuNtXUN478~XK2e4SiFZr68el5z7WDewOvNc7PJt2lQ2YTtp~LKGGe2WRJ4ii8lklla13YEpGM8bq77uFDGGZ-fm2EhejmMb5b68JmOMCpbe28bZgTc27~ewR4iWkNLmeWlpTtq9iWkP77fQKq7GBdk2~Cn2D2BG4CNdWhZ-nm82OqZQGAYznsAmF1ngDmgbS7T9N3m5sGKV6zwd1oQ418s3SXfUdZ9pGEixDZc5LzZXHF5EeTWTz-zceTUk96mGwQjQADVNRsRT04I~bmuA3DR8iQ15L-FZD5hCUdpdwuQ-SqncAZTRNnpL9OXkgCtlsvsoqkCGXKdg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA")
+          div(class="welcome") MetaOverflow
+      div(class='navbar_right')
         if locals.authenticated
-          p Welcome to MetaOverflow
-            form(action=`/users/${user.id}` method='get')
-              button(type='submit') Home
-            form(action='/questions/new' method='get')
-              button(type='submit') Ask Question
-            form(action='/users/logout' method='post')
-              button(type='submit') Logout
+          div(class='home_ask')
+            a(class='home' href=`/users/${user.id}`) Home
+            a(class='ask' href='/questions/new') Ask Question
         else
           div
-            a(href='/users/login') Login
-            a(href='/users/signup') Sign Up
-
+            a(class='login' href='/users/login') Login
+            a(class='login' href='/users/signup') Sign Up
             if locals.authenticated
-              a(href='/questions/new' method='GET'): button.ask-button Ask Question
+              a(class='login' href='/questions/new' method='GET'): button.ask-button Ask Question
             else
               a(href='/users/login' method='GET' id='logged-out-ask-btn'): button.ask-button Ask Question
           .right-sidebar-header
+      div(class='nav_right')
+        if locals.authenticated
+          span(class='nav_button')
+            form(action='/users/logout' method='post')
+                button(type='submit' id='logout_button') Logout
     block content
 include footer.pug

@@ -14,13 +14,16 @@ block content
             button(class='edit-btn' id=`edit-question-${question.id}`) Edit
             +field('Title', 'title', question.title)
             +field('Question', 'question', question.question)
-          div(id=`answers-container-${answers.id}`).answers-container
+
+        div(id=`answers-container-${answers.id}`).answers-container
           div(class="answer-btn" id=`answer-question-${question.id}`).answer-area.container
                 form(id='answerform' method='POST' action='/answer')
                 input(type='text' value= '' id= 'Answer-submit-form')
                 input(type='submit' value='Leave Answer' id= 'Answer-submit-btn' onClick="document.location.reload(true)")
-          div(id=`answers-container`).answers.container
-            h2 Answers:
-              each a in answers
-                h3(id=`${a.id}`)=a.answer
-                if loggedInUser === answers.userId
+         h2 Answers:
+           each a in answers
+             div(id=`answer-container-${a.id}`).single-answer.container
+               h3(id=`${a.id}`)=a.answer
+        div(class='leave_answer')
+          textarea(name="answer_form", cols="50", rows="10")
+        a(href='/answer' method='GET'): button.answer-button Submit Answer
