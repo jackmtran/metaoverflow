@@ -5,9 +5,8 @@ block content
     table
       thead
       tbody
+      h2(class="h2HomePage")=`${user.username}'s Questions`
       each q in question
         div(id=`question-container-${question.id}`).single-question-container
-          h1(id=`${q.id}-title`)= q.title
-          h2 Question:
+          a(id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
           p(id=`${q.id}-content`)= q.question
-            button(class='delete-btn' id=`delete-question-${q.id}`) Delete
