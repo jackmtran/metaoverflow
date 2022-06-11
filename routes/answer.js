@@ -20,7 +20,13 @@ router.post( '/:id(\\d+)', asyncHandler(async (req, res) => {
 
     await addAnswer.save();
 	// res.redirect(`/questions/${questionId}`);
-})
+ })
 );
+
+router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+    const answerId = parseInt(req.params.id, 10);
+    const answer = await db.Answer.findByPk(answerId);
+        await answer.destroy();
+}))
 
 module.exports = router;

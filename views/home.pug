@@ -10,6 +10,6 @@ block content
       each q in question
         div(class='eachq')
           div(id=`question-container-${question.id}`).single-question-container
-            a(id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
+            a(class='questiontitle' id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
           div(class='questionz')
             p(id=`${q.id}-content`)= q.question
