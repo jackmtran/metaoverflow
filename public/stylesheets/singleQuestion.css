@@ -37,6 +37,7 @@ h2 {
     background-color: #f8f9f9;
     font-size: x-large;
     display: flex;
+    font-weight: bold;
 }
 
 h3 {
@@ -52,4 +53,30 @@ textarea {
 .button {
     border-radius: 8px;
     background-color: white; color: black;
+}
+
+.edit-btn {
+    border-radius: 8px;
+    background-color: white; color: black;
+    margin-right: 3rem;
+}
+
+.delete-btn {
+    border-radius: 8px;
+    background-color: white; color: black;
+
+}
+
+label {
+    background-color: #f8f9f9;
+    
+    font-size: large;
+    font-size: x-large;
+    display: flex;
+}
+
+input {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9f9;
 }
