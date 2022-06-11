@@ -8,7 +8,7 @@ block content
         div(id='h1_container')
           h1(id="questionH1") Question
           h1(id="voteCountH1") Total Votes
-        div
+        div(class='allqs')
           each q in questions
             div(class='spacing' id=`question-container-${q.id}`).single-question-container
               a(class='homeTitles' href=`/questions/${q.id}`) #{q.title}

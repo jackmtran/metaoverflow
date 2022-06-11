@@ -127,8 +127,9 @@ h1 {
 
 .spacing {
 	padding: 2rem;
-	border: 2px solid white;
+	border: 3px solid white;
 	margin: 2rem;
+	border-radius: 8px;
 	/* border-top: transparent;
 	border-right: transparent;
 	border-bottom: transparent; */
@@ -158,4 +159,8 @@ a#logged-out-ask-btn {
 #welcome {
 	margin-top: .5rem;
     font-size: x-large;
+}
+
+.allqs {
+	margin-bottom: 75px;
 }
