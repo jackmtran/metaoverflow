@@ -1,12 +1,15 @@
 extends layout.pug
 include utils.pug
 block content
-  div
+  head
+    link(rel='stylesheet' href='/stylesheets/home.css')
+  body
+  div(class='home-container')
     table
-      thead
-      tbody
-      h2(class="h2HomePage")=`${user.username}'s Questions`
+      h2(class="usernameqs")=`${user.username}'s Questions`
       each q in question
-        div(id=`question-container-${question.id}`).single-question-container
-          a(id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
-          p(id=`${q.id}-content`)= q.question
+        div(class='eachq')
+          div(id=`question-container-${question.id}`).single-question-container
+            a(id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
+          div(class='questionz')
+            p(id=`${q.id}-content`)= q.question
