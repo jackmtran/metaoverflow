@@ -8,8 +8,7 @@
     margin-top: 30px;
     margin-bottom: 70px;
     max-width: max-content;
-    margin-right: 5%;
-    margin-left: 5%;
+    margin:auto;
     display: flex;
     flex-direction: column;
     align-content: center;
