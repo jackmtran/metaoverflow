@@ -1,6 +1,6 @@
 body {
 	padding: 50px;
-	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+	font: 12px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -52,7 +52,7 @@ h1 {
 	display: inline-flex;
 	justify-content: space-between;
 	background-color: #f8f9f9;
-	border-top: 3px solid lightgray;
+	border-top: 3px solid rgb(129, 183, 222);
 	border-bottom: 1px solid lightgray;
 	text-decoration:none;
 }
@@ -155,16 +155,17 @@ h1 {
 
 .spacing {
 	padding: 2rem;
-	border: 3px solid white;
+	border: 5px solid white;
 	margin: 2rem;
 	border-radius: 8px;
+	background-color:#f8f9f9;
 	/* background-color: white; */
 	/* border-top: transparent;
 	border-right: transparent;
 	border-bottom: transparent; */
 }
 
-button {
+.button {
     border-radius: 8px;
     background-color: white; color: black;
 }
@@ -173,8 +174,9 @@ button {
 	margin-right: .5rem;
 }
 
-single-question-containter {
-	background-color: white;
+.single-question-container {
+	background-color: #f8f9f9;
+	text-decoration:none;
 }
 
 #logo {
@@ -195,4 +197,25 @@ a#logged-out-ask-btn {
 
 .allqs {
 	margin-bottom: 75px;
+}
+
+#questionH1 {
+	font-size:45px;
+	margin-bottom:10px
+}
+
+p {
+	background-color: #f8f9f9
+}
+
+.home{
+	text-decoration: none;
+}
+
+.ask{
+	text-decoration: none;
+}
+
+.games{
+	text-decoration: none;
 }
