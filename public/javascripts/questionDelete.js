@@ -5,7 +5,6 @@ for (let i = 0; i < deleteBtns.length; i++) {
 
     btn.addEventListener('click', async(e) => {
         const questionId = e.target.id.split('-')[2]
-        console.log(questionId);
         const res = await fetch(`/questions/${questionId}`, {
             method: 'DELETE'
         })

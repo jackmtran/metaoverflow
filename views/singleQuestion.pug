@@ -29,7 +29,12 @@ block content
                 div(id=`answers-container-${answers.id}`).answers-container
                   each a in answers
                     div(id=`answer-container-${a.id}`).single-answer.container
-                      h3(id=`${a.id}`)=a.answer
+                      if loggedInUser === question.userId
+                        h3(id=`${a.id}`)=a.answer
+                        button(class='delete-btn-answer' id=`delete-answer-${a.id}`) Delete Answer
+                      else
+                        h3(id=`${a.id}`)=a.answer
+              if locals.authenticated
                 div(class="answer-btn" id=`answer-question-${question.id}`).answer-area.container
                     form(id='answerform' method='POST' action='/answer')
                     input(type='hidden' name='userId' value=`${userId}`)
