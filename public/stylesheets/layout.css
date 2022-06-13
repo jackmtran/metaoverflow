@@ -172,6 +172,7 @@ h1 {
 
 .login {
 	margin-right: .5rem;
+	text-decoration:none;
 }
 
 .single-question-container {
