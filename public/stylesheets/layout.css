@@ -102,6 +102,8 @@ h1 {
 	display: inline-flex;
 	margin-right: 2rem;
 	text-decoration: none;
+	font-weight:bold;
+	font-size: 19px;
 }
 
 #h1_container {
@@ -130,12 +132,13 @@ h1 {
 	border: 3px solid white;
 	margin: 2rem;
 	border-radius: 8px;
+	/* background-color: white; */
 	/* border-top: transparent;
 	border-right: transparent;
 	border-bottom: transparent; */
 }
 
-.button {
+button {
     border-radius: 8px;
     background-color: white; color: black;
 }
@@ -144,6 +147,9 @@ h1 {
 	margin-right: .5rem;
 }
 
+single-question-containter {
+	background-color: white;
+}
 
 #logo {
 	width: 30px;

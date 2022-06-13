@@ -14,6 +14,22 @@
     margin-bottom: 100px;
 }
 
+.single-answer.container {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+	align-items: center;
+	grid-area: center;
+	text-decoration:none;
+}
+
+/* a {
+    font-style: bold;
+    font-weight: bold;
+    font-size: large;
+    padding-left: 0;
+} */
 
 /* #questionh1 {
     margin-top: 1rem;
@@ -64,12 +80,17 @@ textarea {
 .delete-btn {
     border-radius: 8px;
     background-color: white; color: black;
+}
 
+.delete-btn-answer {
+    border-radius: 8px;
+    background-color: white;
+    color: black;
 }
 
 label {
     background-color: #f8f9f9;
-    
+
     font-size: large;
     font-size: x-large;
     display: flex;

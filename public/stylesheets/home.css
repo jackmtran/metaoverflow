@@ -26,12 +26,12 @@
     margin-bottom: 2rem;
 }
 
-a {
+/* a {
     font-style: bold;
     font-weight: bold;
     font-size: large;
     padding-left: 0;
-}
+} */
 .single-question-container {
     padding: 2rem
 }
@@ -47,6 +47,13 @@ a {
     padding: 1rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+.questiontitle{
+    font-style: bold;
+    font-weight: bold;
+    font-size: large;
+    padding-left: 0;
 }
 
 p {
