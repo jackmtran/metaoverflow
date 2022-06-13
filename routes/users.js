@@ -61,11 +61,17 @@ const loginValidators = [
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const questionId = parseInt(req.params.id, 10);
-	console.log(questionId);
+
   const question = await db.Question.findAll({
 		where: { userId: questionId }
 	});
-    res.render('home', { question });
+	const users = await db.User.findAll({
+		raw: true,
+		where: { id: questionId }
+	})
+
+	const userName = users[0].username
+    res.render('home', { question, userName });
 }));
 
 router.get('/signup', csrfProtection, (req, res) => {
@@ -133,7 +139,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 				if (passwordMatch) {
 					loginUser(req, res, user);
 					// return res.redirect('/');
-					return req.session.save(( ) => res.redirect('/'))
+					return req.session.save(( ) => res.redirect(`/users/${user.id}`))
 				}
 			}
 			errors.push('Please enter a valid username and password.');

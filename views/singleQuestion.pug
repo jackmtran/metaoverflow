@@ -32,6 +32,7 @@ block content
                       h3(id=`${a.id}`)=a.answer
                 div(class="answer-btn" id=`answer-question-${question.id}`).answer-area.container
                     form(id='answerform' method='POST' action='/answer')
+                    input(type='hidden' name='userId' value=`${userId}`)
                     textarea(type='text' value= '' id= 'Answer-submit-form' cols="80", rows="10")
                     div
                       input(class= 'button' id= 'Answer-submit-btn' type='submit' value='Leave Answer' onClick="document.location.reload(true)")
