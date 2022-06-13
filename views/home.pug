@@ -6,10 +6,10 @@ block content
   body
   div(class='home-container')
     table
-      h2(class="usernameqs")=`${user.username}'s Questions`
+      h2(class="usernameqs")=`${userName}'s Questions`
       each q in question
         div(class='eachq')
           div(id=`question-container-${question.id}`).single-question-container
-            a(class='questiontitle' id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
+            a(class = 'titlehome' id=`${q.id}-title` href=`/questions/${q.id}`)= q.title
           div(class='questionz')
             p(id=`${q.id}-content`)= q.question

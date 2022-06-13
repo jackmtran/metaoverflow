@@ -1,10 +1,14 @@
 extends layout.pug
 include utils.pug
 block content
-  div(class='topc_container')
     head
+      link(rel='stylesheet' href='/stylesheets/categoryHome.css')
     body
-  div(class='allcs')
-    each c in categoryQuestions
-        div(class='spacing' id=`category-container-${c.id}`).single-category-container
-            a(class='homeName' href=`/categorys/${c.id}`) #{c.name}
+    div(class='home-containter')
+    table
+      h1(class="category")=`${categoryName}'s Questions`
+      each c in categoryQuestions
+        div(class='eachq')
+          div(class='spacing' id=`category-container-${c.id}`).single-category-container
+            a(class = 'titlehome' id=`${c.id}-title` href=`/questions/${c.id}`)= c.title
+            p(id=`${c.id}-content`)= c.question

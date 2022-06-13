@@ -11,11 +11,20 @@ router.get('/', csrfProtection, async(req, res) => {
 	res.render('category', { categories });
 });
 
-router.get('/:id(\\d+)', csrfProtection, async(req, res) => {
-	const categoryQuestions = await db.Question.findAll()
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+	const questionId = parseInt(req.params.id, 10);
 
-	res.render('categoryHome', { categoryQuestions });
-});
+	const categoryQuestions = await db.Question.findAll({
+			where: { categoryId: questionId}
+		})
+	const categories = await db.Category.findAll({
+		where: { id: questionId },
+		raw:true
+	})
+
+	const categoryName = categories[0].name
+	res.render('categoryHome', { categoryQuestions, categoryName });
+}));
 
 
 module.exports = router;
