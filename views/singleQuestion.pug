@@ -31,7 +31,7 @@ block content
                     div(id=`answer-container-${a.id}`).single-answer.container
                       if loggedInUser === question.userId
                         h3(id=`${a.id}`)=a.answer
-                        button(class='delete-btn-answer' id=`delete-answer-${a.id}`) Delete Answer
+                        button(class='delete-btn-answer' id=`delete-answer-${a.id}` onClick="document.location.reload(true)") Delete Answer
                       else
                         h3(id=`${a.id}`)=a.answer
               if locals.authenticated
